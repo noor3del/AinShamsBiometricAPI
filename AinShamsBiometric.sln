@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinShamsBiometric.Api", "AinShamsBiometric.Api\AinShamsBiometric.Api.csproj", "{22D75612-9665-4415-9273-1B8849B7260D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinShamsBiometric.Contracts", "AinShamsBiometric.Contracts\AinShamsBiometric.Contracts.csproj", "{FD755A90-1BE1-45FC-B9C2-1AC80BC429DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinShamsBiometric.Domain", "AinShamsBiometric.Domain\AinShamsBiometric.Domain.csproj", "{FCCEA524-BB36-4CC7-87E9-E054F9B8F1D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinShamsBiometric.Infrastucture", "AinShamsBiometric.Infrastucture\AinShamsBiometric.Infrastucture.csproj", "{A36D8B84-9291-4183-9D7D-DE01FC087BD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinShamsBiometric.Application", "AinShamsBiometric.Application\AinShamsBiometric.Application.csproj", "{198B900B-6DD9-497B-B7C3-922A2F8E649C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22D75612-9665-4415-9273-1B8849B7260D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D75612-9665-4415-9273-1B8849B7260D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D75612-9665-4415-9273-1B8849B7260D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D75612-9665-4415-9273-1B8849B7260D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD755A90-1BE1-45FC-B9C2-1AC80BC429DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD755A90-1BE1-45FC-B9C2-1AC80BC429DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD755A90-1BE1-45FC-B9C2-1AC80BC429DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD755A90-1BE1-45FC-B9C2-1AC80BC429DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCCEA524-BB36-4CC7-87E9-E054F9B8F1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCCEA524-BB36-4CC7-87E9-E054F9B8F1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCCEA524-BB36-4CC7-87E9-E054F9B8F1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCCEA524-BB36-4CC7-87E9-E054F9B8F1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A36D8B84-9291-4183-9D7D-DE01FC087BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36D8B84-9291-4183-9D7D-DE01FC087BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36D8B84-9291-4183-9D7D-DE01FC087BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36D8B84-9291-4183-9D7D-DE01FC087BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{198B900B-6DD9-497B-B7C3-922A2F8E649C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{198B900B-6DD9-497B-B7C3-922A2F8E649C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{198B900B-6DD9-497B-B7C3-922A2F8E649C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{198B900B-6DD9-497B-B7C3-922A2F8E649C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41536CE8-FB84-4265-BBD0-ABD9E5D2F989}
+	EndGlobalSection
+EndGlobal
