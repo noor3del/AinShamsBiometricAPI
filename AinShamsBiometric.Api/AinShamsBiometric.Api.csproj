@@ -10,10 +10,49 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.7.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AinShamsBiometric.Application\AinShamsBiometric.Application.csproj" />
+    <ProjectReference Include="..\AinShamsBiometric.Contracts\AinShamsBiometric.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Neurotec">
+      <HintPath>bin\Debug\Neurotec\Neurotec.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Accelerator.Admin.Rest">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Accelerator.Admin.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Biometrics.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics.Client">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Biometrics.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics.Gui">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Biometrics.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Devices">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Gui">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Licensing">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Media">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Media.Processing">
+      <HintPath>bin\Debug\Neurotec\Neurotec.Media.Processing.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

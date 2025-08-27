@@ -6,4 +6,45 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Neurotec">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Accelerator.Admin.Rest">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Accelerator.Admin.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Biometrics.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics.Client">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Biometrics.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Biometrics.Gui">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Biometrics.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Devices">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Gui">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Licensing">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Media">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurotec.Media.Processing">
+      <HintPath>..\AinShamsBiometric.Api\bin\Debug\Neurotec\Neurotec.Media.Processing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AinShamsBiometric.Contracts\AinShamsBiometric.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

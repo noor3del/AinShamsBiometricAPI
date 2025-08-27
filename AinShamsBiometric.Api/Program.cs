@@ -1,8 +1,49 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AinShamsBiometric.Application;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using Neurotec.Licensing;
 using Scalar.AspNetCore;
+
+#region Obtain Neurotechnology Licenses
+
+// --- This is the new section for obtaining licenses on startup ---
+const string Address = "/local"; // Use "/local" for local license server
+const string Port = "5000";    // Default port for local server
+
+// All licenses your application might need
+string[] licenses =
+{
+    "Biometrics.FaceDetectionBase",
+    "Biometrics.FaceDetection",
+    "Biometrics.FaceSegmentation",
+    "Biometrics.Standards.Faces",
+
+
+};
+
+try
+{
+    Console.WriteLine("Obtaining Neurotechnology licenses...");
+    foreach (var license in licenses)
+    {
+        NLicense.ObtainComponents(Address, Port, license);
+    }
+    Console.WriteLine("All licenses obtained successfully.");
+}
+catch (Exception ex)
+{
+    Console.Error.WriteLine($"FATAL: Failed to obtain Neurotechnology licenses. The application cannot start.");
+    Console.Error.WriteLine($"Error: {ex.Message}");
+    // Optionally, prevent the app from starting if licenses are critical
+    // return; 
+}
+// --- End of new section ---
+
+#endregion
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +72,7 @@ builder.Services.AddOpenApi(options =>
             License = new OpenApiLicense
             {
                 Name = "Source Code",
-                Url = new Uri("https://github.com/nour3adel/aspire-clone-dash")
+                Url = new Uri("https://github.com/noor3del/AinShamsBiometricAPI")
             },
             Description =
     """
@@ -62,7 +103,13 @@ builder.Services.AddOpenApi(options =>
         return Task.CompletedTask;
     });
 });
-
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.ValueCountLimit = int.MaxValue;                 // allow many form keys
+    o.MultipartBodyLengthLimit = 100 * 1024 * 1024;   // 100 MB
+    o.MultipartHeadersCountLimit = 128;
+    o.MultipartHeadersLengthLimit = int.MaxValue;
+});
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
@@ -95,7 +142,7 @@ builder.Services.AddCors(options =>
 
 #region Dependency injections
 
-
+builder.Services.AddServiceDependencies();
 
 #endregion
 
@@ -110,12 +157,12 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
     #region  Swagger 
-    //app.UseSwaggerUI(options =>
-    //{
+    app.UseSwaggerUI(options =>
+    {
 
-    //    options.SwaggerEndpoint("/openapi/v1.json", "v1");
+        options.SwaggerEndpoint("/openapi/v1.json", "v1");
 
-    //});
+    });
     #endregion
 
     #region Scalar
