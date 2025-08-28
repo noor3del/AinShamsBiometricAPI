@@ -1,55 +1,72 @@
 ﻿using AinShamsBiometric.Application.Interfaces;
 using AinShamsBiometric.Contracts.Responses;
+using Microsoft.Extensions.Logging;
 using Neurotec.Biometrics;
 using Neurotec.Biometrics.Client;
 using Neurotec.Images;
 using Neurotec.IO;
+using System.Diagnostics;
 
 namespace AinShamsBiometric.Application.Services;
 
-public sealed class ICAOService : IICAOService
+public sealed class FaceService : IFaceService
 {
 
     private readonly NBiometricClient _client;
-
-    public ICAOService(NBiometricClient client)
+    private readonly ILogger<FaceService> _log;
+    public FaceService(NBiometricClient client, ILogger<FaceService> log)
     {
         _client = client ?? throw new ArgumentNullException(nameof(client));
+        _log = log;
         ConfigureClient(_client);
     }
+    /// <summary>
+    /// Segment + background removal + red-eye removal, then return Base64 JPEG (compressed and resized).
+    /// </summary>
     public async Task<string> SegmentImageAsync(Stream imageStream, string? fileName = null, CancellationToken ct = default)
     {
         if (imageStream is null || !imageStream.CanRead)
             throw new ArgumentException("Invalid image stream", nameof(imageStream));
 
+        ct.ThrowIfCancellationRequested();
+
         using var subject = new NSubject();
         using var nstream = NStream.FromStream(imageStream);
         using var nimg = NImage.FromStream(nstream);
         using var face = new NFace { Image = nimg };
-        if (!string.IsNullOrWhiteSpace(fileName))
-            face.FileName = fileName;
+        if (!string.IsNullOrWhiteSpace(fileName)) face.FileName = fileName;
+
 
         subject.Faces.Add(face);
+
         subject.IsMultipleSubjects = true;
 
         // enable ICAO processing
         _client.FacesIcaoRemoveBackground = true;
         _client.FacesIcaoRemoveRedEye = true;
         _client.FacesTemplateSize = NTemplateSize.Small;
+        _client.FacesMinimalInterOcularDistance = 32; //32
+
         var task = _client.CreateTask(
             NBiometricOperations.CreateTemplate |
             NBiometricOperations.AssessQuality |
             NBiometricOperations.Segment,
             subject);
 
+        var sw = Stopwatch.StartNew();
         await _client.PerformTaskAsync(task);
-
+        sw.Stop();
         var segmentedFace = subject.Faces.LastOrDefault()?.Image;
         if (segmentedFace == null)
             throw new InvalidOperationException("No segmented face found");
 
         var buffer = segmentedFace.Save(NImageFormat.Jpeg); // returns NBuffer
         var base64 = Convert.ToBase64String(buffer.ToArray());
+
+        NLAttributes? attributes = face.Objects?.FirstOrDefault();
+        _log.LogInformation("Segmented {File} in {Elapsed} ms; original={OrigW}x{OrigH}, quality={Quality}, bytes={Bytes}",
+         fileName, sw.ElapsedMilliseconds, segmentedFace.Width, segmentedFace.Height, attributes?.Quality, buffer.Size);
+
         return base64;
 
     }

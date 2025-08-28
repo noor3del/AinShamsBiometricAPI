@@ -2,7 +2,7 @@
 
 namespace AinShamsBiometric.Application.Interfaces
 {
-    public interface IICAOService
+    public interface IFaceService
     {
         /// <summary>
         /// Evaluate ICAO compliance and facial attributes from an image stream.

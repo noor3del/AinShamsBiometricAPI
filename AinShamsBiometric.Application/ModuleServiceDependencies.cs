@@ -14,7 +14,17 @@ namespace AinShamsBiometric.Application
                 var client = new NBiometricClient();
                 return client;
             });
-            services.AddScoped<IICAOService, ICAOService>();
+            services.AddScoped<IFaceService, FaceService>();
+            services.AddHttpClient<ICardService, CardService>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.miniai.live/"); // trailing slash required
+                client.Timeout = TimeSpan.FromSeconds(30);
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
+            });
+
+
+
             return services;
         }
     }
